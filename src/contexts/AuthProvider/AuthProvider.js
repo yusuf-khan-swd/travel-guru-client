@@ -3,7 +3,7 @@ import { getAuth, signInWithPopup } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
 const auth = getAuth(app);
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const user = { displayName: 'Yusuf' };
