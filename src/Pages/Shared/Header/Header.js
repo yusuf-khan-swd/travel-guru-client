@@ -1,15 +1,20 @@
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/brand/logo.png';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, setUser } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  console.log(user)
 
   const handleLogOut = () => {
     logOut()
-      .then(() => { })
+      .then(() => {
+        toast.success('Logout Done!');
+        setUser(null);
+      })
       .catch((error) => console.error('error: ', error))
   };
 
