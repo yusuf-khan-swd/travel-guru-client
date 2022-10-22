@@ -28,31 +28,14 @@ const Register = () => {
                   htmlFor="firstName"
                   className="inline-block mb-1 font-medium"
                 >
-                  First name
+                  Your name
                 </label>
                 <input
-                  placeholder="John"
-                  required
+                  placeholder="John Doe"
                   type="text"
                   className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                  id="firstName"
-                  name="firstName"
-                />
-              </div>
-              <div className="mb-1 sm:mb-2">
-                <label
-                  htmlFor="lastName"
-                  className="inline-block mb-1 font-medium"
-                >
-                  Last name
-                </label>
-                <input
-                  placeholder="Doe"
-                  required
-                  type="text"
-                  className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                  id="lastName"
-                  name="lastName"
+                  id="name"
+                  name="name"
                 />
               </div>
               <div className="mb-1 sm:mb-2">
@@ -71,15 +54,50 @@ const Register = () => {
                   name="email"
                 />
               </div>
+              <div className="mb-1 sm:mb-2">
+                <label
+                  htmlFor="password"
+                  className="inline-block mb-1 font-medium"
+                >
+                  Password
+                </label>
+                <input
+                  placeholder="Password"
+                  required
+                  type="password"
+                  className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                  id="password"
+                  name="password"
+                />
+              </div>
+              <div className="mb-1 sm:mb-2">
+                <label
+                  htmlFor="confirm"
+                  className="inline-block mb-1 font-medium"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  placeholder="john.doe@example.org"
+                  required
+                  type="password"
+                  className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                  id="confirm"
+                  name="confirm"
+                />
+              </div>
+              <div className="mb-1 sm:mb-2">
+                <input type="checkbox" /> <span>Show Password</span>
+              </div>
               <div className="mt-4 mb-2 sm:mb-4">
                 <button
                   type="submit"
                   className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 hover:bg-purple-900 focus:shadow-outline focus:outline-none"
                 >
-                  Subscribe
+                  Register
                 </button>
               </div>
-              <p className="text-xs text-gray-600 sm:text-sm">
+              <p className="text-xs text-red-600 sm:text-sm">
                 We respect your privacy. Unsubscribe at any time.
               </p>
             </form>
