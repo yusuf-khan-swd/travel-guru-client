@@ -4,7 +4,8 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState('');
-  const { providerLogIn } = useContext(AuthContext);
+
+  const { providerLogIn, createUser } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
 
   const handleFormSubmit = event => {
@@ -21,6 +22,13 @@ const Register = () => {
       return setError(`Password did not matched`);
     }
 
+    createUser(email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((error) => console.error('error: ', error))
 
   };
 
