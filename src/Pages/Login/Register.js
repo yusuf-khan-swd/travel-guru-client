@@ -12,7 +12,9 @@ const Register = () => {
     event.preventDefault();
 
     const form = event.target;
-    const name = form.name.value;
+    const firstName = (form.firstName.value).replace(/\s\s+/g, ' ');
+    const lastName = (form.lastName.value).replace(/\s\s+/g, ' ');
+    const name = firstName + " " + lastName;
     const email = form.email.value;
     const password = form.password.value;
     const confirm = form.confirm.value;
@@ -27,6 +29,7 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        setError('');
       })
       .catch((error) => console.error('error: ', error))
 
@@ -54,14 +57,29 @@ const Register = () => {
                   htmlFor="firstName"
                   className="inline-block mb-1 font-medium"
                 >
-                  Your name
+                  First Name
                 </label>
                 <input
-                  placeholder="John Doe"
+                  placeholder="John"
                   type="text"
                   className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                  id="name"
-                  name="name"
+                  id="firstName"
+                  name="firstName"
+                />
+              </div>
+              <div className="mb-1 sm:mb-2">
+                <label
+                  htmlFor="lastName"
+                  className="inline-block mb-1 font-medium"
+                >
+                  Last Name
+                </label>
+                <input
+                  placeholder="Doe"
+                  type="text"
+                  className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                  id="lastName"
+                  name="lastName"
                 />
               </div>
               <div className="mb-1 sm:mb-2">
