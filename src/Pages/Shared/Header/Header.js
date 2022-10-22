@@ -4,7 +4,7 @@ import logo from '../../../assets/brand/logo.png';
 
 const Header = () => {
   return (
-    <nav className='flex justify-between items-center pr-14 pl-14'>
+    <nav className='flex justify-between items-center pr-14 pl-14 p-3'>
       <div>
         <Link to='/'>
           <img className='w-32' src={logo} alt="" />
