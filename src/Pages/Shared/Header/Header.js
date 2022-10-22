@@ -4,9 +4,14 @@ import logo from '../../../assets/brand/logo.png';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleLogOut = () => {
+    logOut()
+      .then(() => { })
+      .catch((error) => console.error('error: ', error))
+  };
 
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -54,9 +59,10 @@ const Header = () => {
                 <>
                   {user.displayName}
                   <button
+                    onClick={handleLogOut}
                     className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-500 hover:bg-purple-800 focus:shadow-outline focus:outline-none"
-                    aria-label="Sign up"
-                    title="Sign up"
+                    aria-label="Log Out"
+                    title="Log Out"
                   >
                     Log Out
                   </button>
