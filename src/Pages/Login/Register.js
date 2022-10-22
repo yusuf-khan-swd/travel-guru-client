@@ -116,7 +116,7 @@ const Register = () => {
                 </button>
               </div>
               <p className="text-xs text-red-600 sm:text-sm">
-                We respect your privacy. Unsubscribe at any time.
+                {error}
               </p>
             </form>
           </div>
