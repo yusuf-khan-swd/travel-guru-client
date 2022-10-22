@@ -174,7 +174,7 @@ const Register = () => {
                   Register
                 </button>
               </div>
-              <p>Don't have an account? <Link to='/register' className="text-orange-400 underline">Create an account</Link> </p>
+              <p>Already have an account? <Link to='/login' className="text-orange-400 underline">Login</Link> </p>
             </form>
           </div>
         </div>
