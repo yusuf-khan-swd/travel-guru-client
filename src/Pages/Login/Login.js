@@ -1,6 +1,7 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
@@ -82,6 +83,9 @@ const Login = () => {
               <div className="mb-1 sm:mb-2">
                 <input onClick={() => setHidePassword(!hidePassword)} type="checkbox" /> <span>Show Password</span>
               </div>
+              <p className="text-xs mt-3 text-red-600 sm:text-sm">
+                {error}
+              </p>
               <div className="mt-4 mb-2 sm:mb-4">
                 <button
                   type="submit"
@@ -90,9 +94,7 @@ const Login = () => {
                   Login
                 </button>
               </div>
-              <p className="text-xs text-red-600 sm:text-sm">
-                {error}
-              </p>
+              <p>Don't have an account? <Link to='/register' className="text-orange-400 underline">Create an account</Link> </p>
             </form>
           </div>
         </div>
