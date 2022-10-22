@@ -1,10 +1,28 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const [error, setError] = useState('');
   const { providerLogIn } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
+
+  const handleFormSubmit = event => {
+    event.preventDefault();
+
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirm = form.confirm.value;
+    console.log(name, email, password, confirm);
+
+    if (password !== confirm) {
+      return setError(`Password did not matched`);
+    }
+
+
+  };
 
   const handleGoogleSignIn = () => {
     providerLogIn(googleProvider)
@@ -22,7 +40,7 @@ const Register = () => {
             <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
               Sign up for updates
             </h3>
-            <form>
+            <form onSubmit={handleFormSubmit}>
               <div className="mb-1 sm:mb-2">
                 <label
                   htmlFor="firstName"
@@ -78,7 +96,7 @@ const Register = () => {
                   Confirm Password
                 </label>
                 <input
-                  placeholder="john.doe@example.org"
+                  placeholder="Password"
                   required
                   type="password"
                   className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
