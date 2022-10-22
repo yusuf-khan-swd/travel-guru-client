@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState('');
+  const [hidePassword, setHidePassword] = useState(true);
 
   const { providerLogIn, createUser } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
@@ -108,7 +109,7 @@ const Register = () => {
                 <input
                   placeholder="Password"
                   required
-                  type="password"
+                  type={hidePassword ? "password" : "text"}
                   className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                   id="password"
                   name="password"
@@ -124,14 +125,14 @@ const Register = () => {
                 <input
                   placeholder="Password"
                   required
-                  type="password"
+                  type={hidePassword ? "password" : "text"}
                   className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                   id="confirm"
                   name="confirm"
                 />
               </div>
               <div className="mb-1 sm:mb-2">
-                <input type="checkbox" /> <span>Show Password</span>
+                <input onClick={() => setHidePassword(!hidePassword)} type="checkbox" /> <span>Show Password</span>
               </div>
               <div className="mt-4 mb-2 sm:mb-4">
                 <button
