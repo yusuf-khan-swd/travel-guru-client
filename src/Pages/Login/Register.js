@@ -21,7 +21,6 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const confirm = form.confirm.value;
-    console.log(name, email, password, confirm);
 
     if (password !== confirm) {
       return setError(`Password did not matched`);
@@ -44,9 +43,9 @@ const Register = () => {
                 toast.success('Registration is successFull. Please Verify your email. ')
               })
           })
-          .catch((error) => console.error('error: ', error))
+          .catch((error) => setError(error.message))
       })
-      .catch((error) => console.error('error: ', error))
+      .catch((error) => setError(error.message))
 
   };
 
