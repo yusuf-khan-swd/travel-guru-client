@@ -6,7 +6,7 @@ const Register = () => {
   const [error, setError] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
 
-  const { providerLogIn, createUser } = useContext(AuthContext);
+  const { providerLogIn, createUser, setUserData } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
 
   const handleFormSubmit = event => {
@@ -16,6 +16,7 @@ const Register = () => {
     const firstName = (form.firstName.value).replace(/\s\s+/g, ' ');
     const lastName = (form.lastName.value).replace(/\s\s+/g, ' ');
     const name = firstName + " " + lastName;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirm = form.confirm.value;
@@ -31,6 +32,13 @@ const Register = () => {
         console.log(user);
         form.reset();
         setError('');
+
+        setUserData({
+          displayName: name,
+          photoURL: photoURL
+        })
+          .then(() => { })
+          .catch((error) => console.error('error: ', error))
       })
       .catch((error) => console.error('error: ', error))
 
@@ -81,6 +89,21 @@ const Register = () => {
                   className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                   id="lastName"
                   name="lastName"
+                />
+              </div>
+              <div className="mb-1 sm:mb-2">
+                <label
+                  htmlFor="photoURL"
+                  className="inline-block mb-1 font-medium"
+                >
+                  Photo URL
+                </label>
+                <input
+                  placeholder="photoURL"
+                  type="text"
+                  className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                  id="photoURL"
+                  name="photoURL"
                 />
               </div>
               <div className="mb-1 sm:mb-2">
