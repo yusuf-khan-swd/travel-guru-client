@@ -1,12 +1,13 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
 
-  const { providerLogIn, createUser, setUserData } = useContext(AuthContext);
+  const { providerLogIn, createUser, setUserData, emailVerification } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
 
   const handleFormSubmit = event => {
@@ -37,7 +38,12 @@ const Register = () => {
           displayName: name,
           photoURL: photoURL
         })
-          .then(() => { })
+          .then(() => {
+            emailVerification()
+              .then(() => {
+                toast.success('Registration is successFull. Please Verify your email. ')
+              })
+          })
           .catch((error) => console.error('error: ', error))
       })
       .catch((error) => console.error('error: ', error))
@@ -58,7 +64,7 @@ const Register = () => {
         <div className="w-full mx-auto max-w-xl xl:px-8 xl:w-5/12">
           <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
             <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-              Sign up for updates
+              Please Register
             </h3>
             <form onSubmit={handleFormSubmit}>
               <div className="mb-1 sm:mb-2">
