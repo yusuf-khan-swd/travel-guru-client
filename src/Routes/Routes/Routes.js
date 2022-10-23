@@ -22,13 +22,17 @@ export const routes = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path: '/hotels',
+        element: <PrivateRoutes><Home></Home></PrivateRoutes>,
+      },
+      {
         path: '/places/:id',
         element: <Place></Place>,
         loader: ({ params }) => fetch(`https://travel-guru-server-tau.vercel.app/places/${params.id}`)
       },
       {
         path: '/hotels/:id',
-        element: <Hotels></Hotels>,
+        element: <PrivateRoutes><Hotels></Hotels></PrivateRoutes>,
         loader: ({ params }) => fetch(`https://travel-guru-server-tau.vercel.app/hotels/${params.id}`)
       },
       {
