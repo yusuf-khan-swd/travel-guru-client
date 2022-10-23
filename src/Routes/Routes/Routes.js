@@ -18,7 +18,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: '/home',
-        element: <PrivateRoutes><Home></Home></PrivateRoutes>,
+        element: <Home></Home>,
       },
       {
         path: '/hotels',
