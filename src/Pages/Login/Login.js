@@ -34,7 +34,10 @@ const Login = () => {
         toast.success('Login Success!');
         navigate(from, { replace: true });
       })
-      .catch((error) => setError(error.message))
+      .catch((error) => {
+        console.error('error: ', error);
+        setError(error.message);
+      })
 
   };
 
