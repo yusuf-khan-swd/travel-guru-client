@@ -12,8 +12,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname;
-  console.log(from)
+  const from = location.state?.from?.pathname || '/';
 
   const { providerLogIn, logIn } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
@@ -33,7 +32,7 @@ const Login = () => {
         form.reset();
         setError('');
         toast.success('Login Success!');
-        navigate(from, { replace: true })
+        navigate(from, { replace: true });
       })
       .catch((error) => setError(error.message))
 
@@ -44,8 +43,14 @@ const Login = () => {
       .then(result => {
         const user = result.user;
         console.log(user);
+        setError('');
+        toast.success('Google Login Success!!');
+        navigate(from, { replace: true });
       })
-      .catch(error => console.error('error: ', error))
+      .catch(error => {
+        console.error('error: ', error);
+        setError(error.message);
+      })
   };
 
   const handleFacebookSignIn = () => {
@@ -53,11 +58,12 @@ const Login = () => {
       .then(result => {
         const user = result.user;
         console.log(user);
-        toast.success('Facebook Sign In Success!');
         setError('');
+        toast.success('Facebook Login Success!!');
+        navigate(from, { replace: true });
       })
       .catch(error => {
-        console.error('error: ', error)
+        console.error('error: ', error);
         setError(error.message);
       })
   };
