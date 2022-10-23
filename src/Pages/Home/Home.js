@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Place from '../Others/Place/Place';
+import Places from '../Others/Places/Places';
 
 const Home = () => {
   const [places, setPlaces] = useState([]);
@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className='grid grid-cols-1 lg:grid-cols-3 container mx-auto'>
       {
-        places.map(place => <Place key={place.id} place={place}></Place>)
+        places.map(place => <Places key={place.id} place={place}></Places>)
       }
     </div>
   );

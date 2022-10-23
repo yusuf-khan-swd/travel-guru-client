@@ -1,16 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
-const Place = ({ place }) => {
-  const { name, img, placesId } = place;
+const Place = () => {
+  const places = useLoaderData();
+  const { name, placesId } = places;
+
   return (
-    <div className='text-center'>
-      <img
-        src={img}
-        className="h-96 mx-auto"
-        alt=""
-      />
-      <Link to={`/hotels/${placesId}`} className="font-bold text-3xl hover:underline ">{name}</Link>
+    <div>
+      <h2 className='text-3xl uppercase mb-5'>{name}</h2>
+      <Link to={`/hotels/${placesId}`} className='px-2 py-2 bg-orange-400 rounded-md '>Start Booking</Link>
     </div>
   );
 };

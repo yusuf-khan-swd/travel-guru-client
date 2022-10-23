@@ -5,6 +5,7 @@ import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Login/Register";
 import About from "../../Pages/Others/About/About";
 import Hotels from "../../Pages/Others/Hotels/Hotels";
+import Place from "../../Pages/Others/Place/Place";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 export const routes = createBrowserRouter([
@@ -19,6 +20,11 @@ export const routes = createBrowserRouter([
       {
         path: '/home',
         element: <Home></Home>,
+      },
+      {
+        path: '/places/:id',
+        element: <Place></Place>,
+        loader: ({ params }) => fetch(`https://travel-guru-server-tau.vercel.app/places/${params.id}`)
       },
       {
         path: '/hotels/:id',
