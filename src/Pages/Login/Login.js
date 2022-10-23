@@ -1,7 +1,7 @@
 import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import googleIcon from "../../assets/icons/google.png";
 import facebookIcon from "../../assets/icons/fb.png";
@@ -9,6 +9,11 @@ import facebookIcon from "../../assets/icons/fb.png";
 const Login = () => {
   const [error, setError] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname;
+  console.log(from)
 
   const { providerLogIn, logIn } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
@@ -28,6 +33,7 @@ const Login = () => {
         form.reset();
         setError('');
         toast.success('Login Success!');
+        navigate(from, { replace: true })
       })
       .catch((error) => setError(error.message))
 
