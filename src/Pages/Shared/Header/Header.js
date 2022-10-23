@@ -39,24 +39,24 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <a
-              href="/"
+            <Link
+              to="/hotels"
               aria-label="Our product"
               title="Our product"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Features
-            </a>
+              Hotels
+            </Link>
           </li>
           <li>
-            <a
-              href="/"
+            <Link
+              to="/about"
               aria-label="About us"
               title="About us"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
               About us
-            </a>
+            </Link>
           </li>
           <li>
             {
