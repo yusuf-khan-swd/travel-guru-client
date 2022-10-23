@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import googleIcon from "../../assets/icons/google.png";
 
 const Login = () => {
   const [error, setError] = useState('');
@@ -97,10 +98,12 @@ const Login = () => {
               <p>Don't have an account? <Link to='/register' className="text-orange-400 underline">Create an account</Link> </p>
             </form>
           </div>
+          <button className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300" onClick={handleGoogleSignIn}>
+            <img className="w-8 mr-3" src={googleIcon} alt="" />
+            Continue with Google</button>
         </div>
-        <button onClick={handleGoogleSignIn}>Google Sign in</button>
       </div>
-    </div>
+    </div >
   );
 };
 

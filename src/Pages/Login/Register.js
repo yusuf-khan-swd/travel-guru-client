@@ -178,7 +178,7 @@ const Register = () => {
             </form>
           </div>
         </div>
-        <button onClick={handleGoogleSignIn}>Google Sign in</button>
+        <button onClick={handleGoogleSignIn}>Continue with Google</button>
       </div>
     </div>
   );
