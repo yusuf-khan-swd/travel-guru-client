@@ -1,8 +1,10 @@
-import { GoogleAuthProvider } from "firebase/auth";
+import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import googleIcon from "../../assets/icons/google.png";
+import facebookIcon from "../../assets/icons/fb.png";
 
 const Register = () => {
   const [error, setError] = useState('');
@@ -10,6 +12,7 @@ const Register = () => {
 
   const { providerLogIn, createUser, setUserData, emailVerification } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
 
   const handleFormSubmit = event => {
     event.preventDefault();
@@ -58,6 +61,21 @@ const Register = () => {
       })
       .catch(error => console.error('error: ', error))
   };
+
+  const handleFacebookSignIn = () => {
+    providerLogIn(facebookProvider)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        toast.success('Facebook Sign In Success!');
+        setError('');
+      })
+      .catch(error => {
+        console.error('error: ', error)
+        setError(error.message);
+      })
+  };
+
   return (
     <div className=" bg-gray-900 bg-opacity-75">
       <div className="px-4 py-16 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -177,8 +195,15 @@ const Register = () => {
               <p>Already have an account? <Link to='/login' className="text-orange-400 underline">Login</Link> </p>
             </form>
           </div>
+          <button onClick={handleGoogleSignIn} className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300">
+            <img className="w-8 mr-3" src={googleIcon} alt="" />
+            Continue with Google
+          </button>
+          <button onClick={handleFacebookSignIn} className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300">
+            <img className="w-8 mr-3" src={facebookIcon} alt="" />
+            Continue with Facebook
+          </button>
         </div>
-        <button onClick={handleGoogleSignIn}>Continue with Google</button>
       </div>
     </div>
   );
