@@ -5,6 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 
 const Place = () => {
   const [value, onChange] = useState(new Date());
+
   const places = useLoaderData();
   const { name, placesId } = places;
 
