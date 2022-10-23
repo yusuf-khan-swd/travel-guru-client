@@ -7,19 +7,20 @@ import googleIcon from "../../assets/icons/google.png";
 import facebookIcon from "../../assets/icons/fb.png";
 
 const Register = () => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
 
-  const { providerLogIn, createUser, setUserData, emailVerification } = useContext(AuthContext);
+  const { providerLogIn, createUser, setUserData, emailVerification } =
+    useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
 
-  const handleFormSubmit = event => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
 
     const form = event.target;
-    const firstName = (form.firstName.value).replace(/\s\s+/g, ' ');
-    const lastName = (form.lastName.value).replace(/\s\s+/g, ' ');
+    const firstName = form.firstName.value.replace(/\s\s+/g, " ");
+    const lastName = form.lastName.value.replace(/\s\s+/g, " ");
     const name = firstName + " " + lastName;
     const photoURL = form.photoURL.value;
     const email = form.email.value;
@@ -31,49 +32,49 @@ const Register = () => {
     }
 
     createUser(email, password)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
         form.reset();
-        setError('');
+        setError("");
 
         setUserData({
           displayName: name,
-          photoURL: photoURL
+          photoURL: photoURL,
         })
           .then(() => {
-            emailVerification()
-              .then(() => {
-                toast.success('Registration is successFull. Please Verify your email. ')
-              })
+            emailVerification().then(() => {
+              toast.success(
+                "Registration is successFull. Please Verify your email. "
+              );
+            });
           })
-          .catch((error) => setError(error.message))
+          .catch((error) => setError(error.message));
       })
-      .catch((error) => setError(error.message))
-
+      .catch((error) => setError(error.message));
   };
 
   const handleGoogleSignIn = () => {
     providerLogIn(googleProvider)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
       })
-      .catch(error => console.error('error: ', error))
+      .catch((error) => console.error("error: ", error));
   };
 
   const handleFacebookSignIn = () => {
     providerLogIn(facebookProvider)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success('Facebook Sign In Success!');
-        setError('');
+        toast.success("Facebook Sign In Success!");
+        setError("");
       })
-      .catch(error => {
-        console.error('error: ', error)
+      .catch((error) => {
+        console.error("error: ", error);
         setError(error.message);
-      })
+      });
   };
 
   return (
@@ -179,11 +180,16 @@ const Register = () => {
                 />
               </div>
               <div className="mb-1 sm:mb-2">
-                <input onClick={() => setHidePassword(!hidePassword)} type="checkbox" /> <span>Show Password</span>
+                <input
+                  onClick={() => setHidePassword(!hidePassword)}
+                  id="show"
+                  type="checkbox"
+                />
+                <label htmlFor="show" className="ml-1">
+                  Show Password
+                </label>
               </div>
-              <p className="text-xs mt-3 text-red-600 sm:text-sm">
-                {error}
-              </p>
+              <p className="text-xs mt-3 text-red-600 sm:text-sm">{error}</p>
               <div className="mt-4 mb-2 sm:mb-4">
                 <button
                   type="submit"
@@ -192,14 +198,25 @@ const Register = () => {
                   Register
                 </button>
               </div>
-              <p>Already have an account? <Link to='/login' className="text-orange-400 underline">Login</Link> </p>
+              <p>
+                Already have an account?{" "}
+                <Link to="/login" className="text-orange-400 underline">
+                  Login
+                </Link>{" "}
+              </p>
             </form>
           </div>
-          <button onClick={handleGoogleSignIn} className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300">
+          <button
+            onClick={handleGoogleSignIn}
+            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300"
+          >
             <img className="w-8 mr-3" src={googleIcon} alt="" />
             Continue with Google
           </button>
-          <button onClick={handleFacebookSignIn} className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300">
+          <button
+            onClick={handleFacebookSignIn}
+            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300"
+          >
             <img className="w-8 mr-3" src={facebookIcon} alt="" />
             Continue with Facebook
           </button>

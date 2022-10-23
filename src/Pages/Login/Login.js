@@ -7,18 +7,18 @@ import googleIcon from "../../assets/icons/google.png";
 import facebookIcon from "../../assets/icons/fb.png";
 
 const Login = () => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
   const { providerLogIn, logIn } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
 
-  const handleFormSubmit = event => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -26,49 +26,48 @@ const Login = () => {
     const password = form.password.value;
 
     logIn(email, password)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
         form.reset();
-        setError('');
-        toast.success('Login Success!');
+        setError("");
+        toast.success("Login Success!");
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.error('error: ', error);
+        console.error("error: ", error);
         setError(error.message);
-      })
-
+      });
   };
 
   const handleGoogleSignIn = () => {
     providerLogIn(googleProvider)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
-        setError('');
-        toast.success('Google Login Success!!');
+        setError("");
+        toast.success("Google Login Success!!");
         navigate(from, { replace: true });
       })
-      .catch(error => {
-        console.error('error: ', error);
+      .catch((error) => {
+        console.error("error: ", error);
         setError(error.message);
-      })
+      });
   };
 
   const handleFacebookSignIn = () => {
     providerLogIn(facebookProvider)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
-        setError('');
-        toast.success('Facebook Login Success!!');
+        setError("");
+        toast.success("Facebook Login Success!!");
         navigate(from, { replace: true });
       })
-      .catch(error => {
-        console.error('error: ', error);
+      .catch((error) => {
+        console.error("error: ", error);
         setError(error.message);
-      })
+      });
   };
 
   return (
@@ -112,13 +111,17 @@ const Login = () => {
                   name="password"
                 />
               </div>
-
               <div className="mb-1 sm:mb-2">
-                <input onClick={() => setHidePassword(!hidePassword)} type="checkbox" /> <span>Show Password</span>
+                <input
+                  onClick={() => setHidePassword(!hidePassword)}
+                  id="show"
+                  type="checkbox"
+                />
+                <label htmlFor="show" className="ml-1">
+                  Show Password
+                </label>
               </div>
-              <p className="text-xs mt-3 text-red-600 sm:text-sm">
-                {error}
-              </p>
+              <p className="text-xs mt-3 text-red-600 sm:text-sm">{error}</p>
               <div className="mt-4 mb-2 sm:mb-4">
                 <button
                   type="submit"
@@ -127,20 +130,31 @@ const Login = () => {
                   Login
                 </button>
               </div>
-              <p>Don't have an account? <Link to='/register' className="text-orange-400 underline">Create an account</Link> </p>
+              <p>
+                Don't have an account?{" "}
+                <Link to="/register" className="text-orange-400 underline">
+                  Create an account
+                </Link>{" "}
+              </p>
             </form>
           </div>
-          <button onClick={handleGoogleSignIn} className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300">
+          <button
+            onClick={handleGoogleSignIn}
+            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300"
+          >
             <img className="w-8 mr-3" src={googleIcon} alt="" />
             Continue with Google
           </button>
-          <button onClick={handleFacebookSignIn} className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300">
+          <button
+            onClick={handleFacebookSignIn}
+            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium border rounded-2xl mt-6 text-slate-300"
+          >
             <img className="w-8 mr-3" src={facebookIcon} alt="" />
             Continue with Facebook
           </button>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
