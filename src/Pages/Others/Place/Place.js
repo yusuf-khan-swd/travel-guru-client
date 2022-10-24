@@ -10,7 +10,7 @@ const Place = () => {
   const { name, placesId } = places;
 
   return (
-    <div>
+    <div className='p-5'>
       <Calendar onChange={onChange} value={value} />
       <h2 className='text-3xl uppercase mb-5'>{name}</h2>
       <Link to={`/hotels/${placesId}`} className='px-2 py-2 bg-orange-400 rounded-md '>Start Booking</Link>
