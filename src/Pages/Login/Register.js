@@ -8,7 +8,7 @@ import facebookIcon from "../../assets/icons/fb.png";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const [hidePassword, setHidePassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { providerLogIn, createUser, setUserData, emailVerification } =
     useContext(AuthContext);
@@ -80,6 +80,13 @@ const Register = () => {
         setError(error.message);
       });
   };
+
+  const handleShowPassword = event => {
+    const checked = event.target.checked;
+    setShowPassword(checked)
+  };
+
+  console.log(showPassword)
 
   return (
     <div className=" bg-gray-900 bg-opacity-75">
@@ -161,7 +168,7 @@ const Register = () => {
                 <input
                   placeholder="Password"
                   required
-                  type={hidePassword ? "password" : "text"}
+                  type={showPassword ? "text" : "password"}
                   className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                   id="password"
                   name="password"
@@ -177,7 +184,7 @@ const Register = () => {
                 <input
                   placeholder="Password"
                   required
-                  type={hidePassword ? "password" : "text"}
+                  type={showPassword ? "text" : "password"}
                   className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                   id="confirm"
                   name="confirm"
@@ -185,7 +192,7 @@ const Register = () => {
               </div>
               <div className="mb-1 sm:mb-2">
                 <input
-                  onClick={() => setHidePassword(!hidePassword)}
+                  onClick={handleShowPassword}
                   id="show"
                   type="checkbox"
                 />
