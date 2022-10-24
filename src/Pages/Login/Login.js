@@ -32,7 +32,12 @@ const Login = () => {
         form.reset();
         setError("");
         toast.success("Login Success!");
-        navigate(from, { replace: true });
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+        }
+        else {
+          toast.error('Please verify your email.')
+        }
       })
       .catch((error) => {
         console.error("error: ", error);
@@ -72,7 +77,7 @@ const Login = () => {
 
   return (
     <div className=" bg-gray-900 bg-opacity-75">
-      <div className="px-4 py-16 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <div className="px-4 py-16 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 mx-auto">
         <div className="w-full mx-auto max-w-xl xl:px-8 xl:w-5/12">
           <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
             <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
