@@ -14,7 +14,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const { providerLogIn, logIn } = useContext(AuthContext);
+  const { providerLogIn, logIn, setLoading } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
 
@@ -42,7 +42,10 @@ const Login = () => {
       .catch((error) => {
         console.error("error: ", error);
         setError(error.message);
-      });
+      })
+      .finally(() => {
+        setLoading(false);
+      })
   };
 
   const handleGoogleSignIn = () => {
