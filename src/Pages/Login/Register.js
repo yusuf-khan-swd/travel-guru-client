@@ -37,21 +37,25 @@ const Register = () => {
         console.log(user);
         form.reset();
         setError("");
+        handleUpdateProfile(name, photoURL);
 
-        setUserData({
-          displayName: name,
-          photoURL: photoURL,
-        })
-          .then(() => {
-            emailVerification().then(() => {
-              toast.success(
-                "Registration is successFull. Please Verify your email. "
-              );
-            });
-          })
-          .catch((error) => setError(error.message));
+        emailVerification().then(() => {
+          toast.success(
+            "Registration is successFull. Please Verify your email. "
+          );
+        });
       })
       .catch((error) => setError(error.message));
+  };
+
+  const handleUpdateProfile = (name, photoURL) => {
+    setUserData({
+      displayName: name,
+      photoURL: photoURL,
+    })
+      .then(() => { })
+      .catch((error) => setError(error.message));
+
   };
 
   const handleGoogleSignIn = () => {
