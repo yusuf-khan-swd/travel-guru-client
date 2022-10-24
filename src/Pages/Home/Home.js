@@ -11,7 +11,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-3 container mx-auto'>
+    <div className='grid grid-cols-1 lg:grid-cols-3 container mx-auto p-5 m-5 border'>
       {
         places.map(place => <Places key={place.id} place={place}></Places>)
       }
