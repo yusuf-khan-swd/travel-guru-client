@@ -31,8 +31,8 @@ const Login = () => {
         console.log(user);
         form.reset();
         setError("");
-        toast.success("Login Success!");
         if (user.emailVerified) {
+          toast.success("Login Success!");
           navigate(from, { replace: true });
         }
         else {
