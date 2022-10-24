@@ -38,12 +38,10 @@ const Register = () => {
         form.reset();
         setError("");
         handleUpdateProfile(name, photoURL);
-
-        emailVerification().then(() => {
-          toast.success(
-            "Registration is successFull. Please Verify your email. "
-          );
-        });
+        handleEmailVerification();
+        toast.success(
+          "Registration is successFull. Please Verify your email. "
+        );
       })
       .catch((error) => setError(error.message));
   };
@@ -56,6 +54,11 @@ const Register = () => {
       .then(() => { })
       .catch((error) => setError(error.message));
 
+  };
+
+  const handleEmailVerification = () => {
+    emailVerification()
+      .then(() => { });
   };
 
   const handleGoogleSignIn = () => {
@@ -85,8 +88,6 @@ const Register = () => {
     const checked = event.target.checked;
     setShowPassword(checked)
   };
-
-  console.log(showPassword)
 
   return (
     <div className=" bg-gray-900 bg-opacity-75">
